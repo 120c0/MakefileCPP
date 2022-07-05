@@ -1,16 +1,16 @@
-#include "HelloWorld.h"
+#include "HelloWorld.hpp"
 
+#include <cstring>
 #include <iostream>
-#include <string.h>
 
-HelloWorld::HelloWorld(const char *name) noexcept
+HelloWorld::HelloWorld(const char name[256]) noexcept
 {
   strcpy(this->__name, name);
 }
 
 void HelloWorld::exec() const noexcept
 {
-  std::cout << "Hello, " << this->__name << "!\n";
+  std::cout << "Hello, " << this->__name << "\n";
 }
 
 HelloWorld::~HelloWorld()

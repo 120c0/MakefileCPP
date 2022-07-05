@@ -1,39 +1,39 @@
 TARGET_VERSION = 0.0.1
 TARGET = App
-BIN = .obj
-SOURCE_DIR = src
 
-CPPFILES = $(shell find $(SOURCE_DIR) -type f -iname *.cpp)
-OBJECTS = $(patsubst %,$(BIN)/%, $(notdir $(CPPFILES:%.cpp=%.o)))
+BIN_DIR = bin
+SRC_DIR = src
+SRC_FILES = $(shell find $(SRC_DIR) -type f -iname *.cpp)
+OBJECTS = $(SRC_FILES:%.cpp=%.o)
 INCLUDES = -Iinclude
-CPPFLAGS = -Wall -Werror -Wextra $(INCLUDES)
 LIBS =
-BUILD = debug
+BUILD_TYPE = debug
+CPP_FLAGS = -std=c++17 $(INCLUDES)
+RM = @rm
+Q = @
+ECHO = @echo
+TEST_DIR = tests
 
-ifeq ($(BUILD),debug)
-	CPPFLAGS += -O0 -g
-else ifeq ($(BUILD),release)
-	CPPFLAGS += -O3 -s DNDEBUG
+ifeq ($(BUILD_TYPE),debug)
+	CPP_FLAGS += -O0 -g
+else ifeq ($(BUILD_TYPE),release)
+	CPP_FLAGS += -O3 -s -DNDEBUG
 else
-	$(error Build type $(END) error.)
+	$(error Build type $(BUILD_TYPE) error.)
 	@exit 1
 endif
 
-$(info ---- Makefile++ 1.0.0 ----)
-$(info Build Type: $(BUILD))
-$(info Target version: $(TARGET_VERSION))
-
-all: $(OBJECTS) $(TARGET)
+all: $(OBJECTS) $(TARGET)	
 .PHONY: all
-$(OBJECTS): $(BIN)/%.o: $(SOURCE_DIR)/%.cpp
-	$(CXX) -c -o $@ $< $(CPPFLAGS)
+
+%.o: %.cpp
+	$(ECHO) "\033[32mCompiling\033[0m[\033[33m$(notdir $@)\033[0m] \033[36m$(dir $<)\033[33m$(notdir $<)\033[0m..."
+	$(Q)$(CXX) -c -o $@ $< $(CPP_FLAGS)
 $(TARGET): $(OBJECTS)
-	$(CXX) -o $@ $^ $(LIBS)
+	$(ECHO) "\033[32;1mLinking\033[0m executable \033[33m$(TARGET)\033[0m..."
+	$(Q)$(CXX) -o $@ $^ $(LIBS)
+
 clean:
-	@rm $(OBJECTS) $(TARGET)
-deps:
-	$(MAKE) -C lib/ImGui
-clean_deps:
-	$(MAKE) -C lib/ImGui clean
-setup:
-	@mkdir -p .obj data tests lib
+	$(RM) $(OBJECTS) $(TARGET)
+test:
+	$(MAKE) -C $(TEST_DIR)

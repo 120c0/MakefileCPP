@@ -1,8 +1,8 @@
 #include <iostream>
-#include "HelloWorld.h"
+#include "HelloWorld.hpp"
 
-int main(int, const char*[])
+int main(void)
 {
-  HelloWorld("<username_here...>").exec();
+  HelloWorld("<Your name>").exec();
   return EXIT_SUCCESS;
 }
