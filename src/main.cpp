@@ -1,10 +1,8 @@
 #include <iostream>
-#include "HelloWorld.hpp"
+#include "HelloWorld/HelloWorld.hpp"
 
-#include "Test.hpp"
-
-int main(void)
+int main()
 {
-  HelloWorld("<Your name>").exec();
+  HelloWorld("<Your Name>").exec();
   return EXIT_SUCCESS;
 }

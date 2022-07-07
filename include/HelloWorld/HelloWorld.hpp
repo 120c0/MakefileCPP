@@ -3,8 +3,8 @@
 class HelloWorld final
 {
   public:
-    HelloWorld(const char[256]) noexcept;
-
+    HelloWorld(const char name[256]) noexcept;
+  
     virtual void exec() const noexcept;
 
     virtual ~HelloWorld();

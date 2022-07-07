@@ -1,4 +1,6 @@
-# Build Types
+# Makefile++ - Template
+## Build Types
 ### release, debug
-# Clean
-### $ make clean
+#### make BUILD_TYPE=release
+## Clean
+#### $ make clean
