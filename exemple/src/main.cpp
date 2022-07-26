@@ -56,7 +56,7 @@ int main()
   Window window("SDL2 Random World", {500, 500});
   Event event;
 
-  ::texture_tileset = IMG_LoadTexture(window.getSDL_Renderer(), "../assets/tileset.png");
+  ::texture_tileset = IMG_LoadTexture(window.getSDL_Renderer(), "assets/tileset.png");
   
   std::vector<std::vector<int>> tilemap_ids;
 

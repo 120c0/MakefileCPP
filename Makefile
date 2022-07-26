@@ -10,6 +10,12 @@ BUILD_TYPE = debug
 TARGET_VERSION = 0.0.1
 BUILD_FLAGS = -Wall -Werror -Wextra $(INCLUDES)
 
+ifeq ($(BUILD_TYPE),release)
+	BUILD_FLAGS += -O2 -DNDEBUG
+else
+	BUILD_FLAGS += -g -O0
+endif
+
 all: $(call main) $(OBJECTS) $(TARGET)
 	
 %.o: %.$(EXTENSION_FILE)
@@ -20,5 +26,6 @@ $(TARGET): $(OBJECTS)
 	$(info [+] Linking executable...)
 
 clean:
+	$(info Cleaning...)
 	@$(RM) $(OBJECTS) $(TARGET)
 	$(info Done!)
