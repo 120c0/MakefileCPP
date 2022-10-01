@@ -1,12 +1,7 @@
 #include <iostream>
 
-#include "exemple.hpp"
-
 int main()
 {
-  hello(); // =
-  // std::cout << "Hello World\n";
-  // std::cout << "Hello Jhon Doe\n";
-  // std::cout << "Hello Everyone\n";
+  std::cout << "Hello, World\n";
   return EXIT_SUCCESS;
 }
