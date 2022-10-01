@@ -1,8 +1,12 @@
 #include <iostream>
-#include "HelloWorld/HelloWorld.hpp"
+
+#include "exemple.hpp"
 
 int main()
 {
-  HelloWorld("<Your Name>").exec();
+  hello(); // =
+  // std::cout << "Hello World\n";
+  // std::cout << "Hello Jhon Doe\n";
+  // std::cout << "Hello Everyone\n";
   return EXIT_SUCCESS;
 }

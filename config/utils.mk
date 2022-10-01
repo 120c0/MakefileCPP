@@ -2,14 +2,14 @@ EXTENSION_FILE = cpp
 BIN_DIR = bin
 SRC_DIR = src
 INCLUDE_DIR = include
-TARGET = App
 
-ifdef OS
-	RM = del /Q
-else
-	ifeq ($(shell uname), Linux)
-		RM = rm -f
-	endif
+RM = del /Q
+MKDIR = 
+MV = mov
+ifeq ($(shell uname), Linux)
+	RM = rm -f
+	MV = mv
+	MKDIR = mkdir -p
 endif
 
 ifeq ($(EXTENSION_FILE),cpp)
