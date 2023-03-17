@@ -1,11 +1,8 @@
-#ifndef HELLOWORLD_HPP_
-#define HELLOWORLD_HPP_
+#pragma once
 
-class HelloWorld final
+#include <iostream>
+
+namespace HelloWorld
 {
-public:
-  explicit HelloWorld() noexcept = default;
-  void exec() const noexcept;
+  void show() noexcept;
 };
-
-#endif

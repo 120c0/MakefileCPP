@@ -1,7 +1,7 @@
-#include <iostream>
+#include "HelloWorld.hpp"
 
-int main()
+int main(void)
 {
-  std::cout << "Hello, World\n";
+  HelloWorld::show();
   return EXIT_SUCCESS;
 }

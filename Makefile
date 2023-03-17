@@ -1,24 +1,28 @@
-include config/utils.mk
-include config/main.mk
+include .config.makefile/Utils.mk
+include .config.makefile/Main.mk
 
-INCLUDES += 
-LIBS += 
-BUILD_FLAGS += 
-TARGET = App
+TARGET_VERSION = 0.0.1
+LIBRARY_LINK +=
+HEADER_DIR += 
+CFLAGS +=
 
-	
-all: $(call main) $(OBJECTS) $(TARGET) 
+SOURCE_FILES = $(wildcard $(SOURCE_DIR)/*.$(EXTENSION))
+OBJECT_FILES = $(patsubst $(SOURCE_DIR)/%.$(EXTENSION),\
+							 	 $(OBJECT_DIR)/%.o,$(SOURCE_FILES))
 
-$(TARGET): $(OBJECTS)
-	@$(COMPILER) -o $@ $^ $(LIBS)
-	$(info [+] Linking executable...)
+all: $(call main) $(TARGET)
 
-%.o: %.$(EXTENSION_FILE)
-	@$(COMPILER) -c -o $@ $< $(BUILD_FLAGS)
-	$(info [$(COMPILER)] $< ==> $@...)
-	
+$(TARGET): $(OBJECT_FILES)
+	@$(COMPILER) $^ -o $@ $(LIBRARY_LINK) $(CFLAGS)
+	@$(STRIP) $@
+	$(info [$(COMPILER)] Generate executable...)
+
+$(OBJECT_DIR)/%.o: $(SOURCE_DIR)/%.$(EXTENSION)
+	@mkdir -p $(OBJECT_DIR)
+	@$(COMPILER) -c $< -o $@ $(CFLAGS)
+	@$(STRIP) $@
+	$(info [$(COMPILER)] $< -> $@...)
+
 clean:
-	$(info Cleaning...)
-	@$(RM) $(OBJECTS) $(TARGET)
-	$(info Done!)
-
+	@$(RM) $(OBJECT_FILES) $(TARGET)
+	$(info [$(RM)] Removing objects and executable...)

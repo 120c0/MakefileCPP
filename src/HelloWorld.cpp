@@ -1,8 +1,6 @@
 #include "HelloWorld.hpp"
 
-#include <iostream>
-
-void HelloWorld::exec() const noexcept
+void HelloWorld::show() noexcept
 {
-  std::cout << "Hello, World\n";
+  std::cout << "Hello, World!\n";
 }
