@@ -6,7 +6,7 @@ BUILD_TYPE = Debug
 
 SOURCE_DIR = src
 HEADER_DIR = -Iinclude
-OBJECT_DIR = .obj
+OBJECT_DIR = .bin.obj
 
 CFLAGS = -Wall -Wextra $(HEADER_DIR)
 

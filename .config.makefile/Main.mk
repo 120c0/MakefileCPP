@@ -9,5 +9,4 @@ ifeq ($(BUILD_TYPE),Release)
 	CFLAGS += -O3 -s -DNDEBUG
 else
 	CFLAGS += -g -ggdb -O0
-	STRIP = #
 endif
